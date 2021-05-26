@@ -41,6 +41,5 @@ public class PersonDTO {
 
     @NotEmpty
     @Valid
-    @ApiModelProperty(name = "phones", value = "Telefones", position = 5)
     private List<PhoneDTO> phones;
 }
