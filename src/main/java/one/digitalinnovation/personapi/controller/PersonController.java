@@ -2,6 +2,7 @@ package one.digitalinnovation.personapi.controller;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import one.digitalinnovation.personapi.dto.request.PersonDTO;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
@@ -37,21 +38,30 @@ public class PersonController {
     }
 
     @ApiOperation("Buscar a pessoa por ID.")
-    @ApiResponse(code = 200, message = "Pessoa encontrada com sucesso.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Pessoa encontrada com sucesso."),
+            @ApiResponse(code = 200, message = "Pessoa não encontrada.")
+    })
     @GetMapping("/{id}")
     public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
         return personService.findById(id);
     }
 
     @ApiOperation("Atualizar uma pessoa.")
-    @ApiResponse(code = 200, message = "Pessoa atualizada com sucesso.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Pessoa atualizada com sucesso."),
+            @ApiResponse(code = 200, message = "Pessoa não encontrada.")
+    })
     @PutMapping("/{id}")
     public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid PersonDTO personDTO) throws PersonNotFoundException {
         return personService.updateById(id, personDTO);
     }
 
     @ApiOperation("Deletar uma pessoa.")
-    @ApiResponse(code = 200, message = "Pessoa deletada com sucesso.")
+    @ApiResponses({
+            @ApiResponse(code = 204, message = "Pessoa deletada com sucesso."),
+            @ApiResponse(code = 404, message = "Pessoa não encontrada.")
+    })
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id) throws PersonNotFoundException {

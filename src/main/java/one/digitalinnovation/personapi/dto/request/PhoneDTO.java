@@ -18,15 +18,15 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class PhoneDTO {
 
-    @ApiModelProperty(name = "id", value = "ID", example = "1", position = 0)
+    @ApiModelProperty(name = "id", allowEmptyValue = false, value = "ID", example = "1", position = 0)
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @ApiModelProperty(name = "type", value = "Tipo de Telefone", example = "HOME", position = 1)
+    @ApiModelProperty(name = "type", allowEmptyValue = true, value = "Tipo de Telefone", example = "HOME", position = 1)
     private PhoneType type;
 
     @NotEmpty
     @Size(min = 13, max = 14)
-    @ApiModelProperty(name = "number", value = "Numero do Telefone", example = "1199999999999", position = 2)
+    @ApiModelProperty(name = "number", allowEmptyValue = false, value = "Numero do Telefone", example = "1199999999999", position = 2)
     private String number;
 }
