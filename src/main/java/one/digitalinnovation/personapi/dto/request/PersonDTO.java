@@ -18,27 +18,28 @@ import java.util.List;
 @NoArgsConstructor
 public class PersonDTO {
 
-    @ApiModelProperty(name = "id", value = "ID", allowEmptyValue = false, example = "1", position = 0)
+    @ApiModelProperty(value = "ID", example = "1", position = 0)
     private Long id;
 
+    @ApiModelProperty(value = "Primeiro nome", example = "James", position = 1)
     @NotEmpty
     @Size(min = 2, max = 100)
-    @ApiModelProperty(name = "firstName", allowEmptyValue = false, value = "Primeiro nome", example = "James", position = 1)
     private String firstName;
 
+    @ApiModelProperty(value = "Ultimo nome", example = "Gosling", position = 2)
     @NotEmpty
     @Size(min = 2, max = 100)
-    @ApiModelProperty(name = "lastName", allowEmptyValue = false, value = "Ultimo nome", example = "Gosling", position = 2)
     private String lastName;
 
+    @ApiModelProperty(value = "CPF", example = "42090734078", position = 3)
     @NotEmpty
     @CPF
-    @ApiModelProperty(name = "cpf", value = "CPF", allowEmptyValue = false, example = "42090734078", position = 3)
     private String cpf;
 
-    @ApiModelProperty(name = "birthDate", allowEmptyValue = true, value = "Data de Nascimento", example = "04-04-2010", position = 4)
+    @ApiModelProperty(value = "Data de Nascimento", example = "04-04-2010", position = 4)
     private String birthDate;
 
+    @ApiModelProperty(dataType="List", value = "phones", position = 5)
     @NotEmpty
     @Valid
     private List<PhoneDTO> phones;
